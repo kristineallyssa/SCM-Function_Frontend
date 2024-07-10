@@ -10,7 +10,7 @@ The project requires a Metamask account to be connected. It will then retrieve t
 
 ### Executing program
 
-To run this program, you can use Gitpod, an online IDE. To get started, go to the Remix website at https://gitpod.io/workspaces.
+To run this program, you can use Gitpod, an online IDE. To get started, go to the Gitpod website at https://gitpod.io/workspaces.
 
 Once you are on the Gitpod website, clone the github to your workspace.
 
