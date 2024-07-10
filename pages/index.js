@@ -7,6 +7,13 @@ export default function HomePage() {
   const [account, setAccount] = useState(undefined);
   const [atm, setATM] = useState(undefined);
   const [balance, setBalance] = useState(undefined);
+  const [balanceInWei, setBalanceInWei] = useState(0);
+  const [balanceInGwei, setBalanceInGwei] = useState(0);
+  const [balanceInKwei, setBalanceInKwei] = useState(0);
+  const [balanceInMwei, setBalanceInMwei] = useState(0);
+  const [balanceInMicroether, setBalanceInMicroether] = useState(0);
+  const [balanceInMilliether, setBalanceInMilliether] = useState(0);
+
 
   const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
   const atmABI = atm_abi.abi;
@@ -75,6 +82,35 @@ export default function HomePage() {
     }
   }
 
+  const convertBalance = async () => {
+    if (atm) {
+      try {
+        let ethBalance = balance; // Replace this with the actual balance
+        //wei
+        let weiBalance = ethBalance * 1e18;
+        setBalanceInWei(weiBalance);
+        //kwei
+        let kweiBalance = ethBalance * 1e15;
+        setBalanceInKwei(kweiBalance);
+        //mwei
+        let mweiBalance = ethBalance * 1e12;
+        setBalanceInMwei(mweiBalance);
+        //gwei
+        let gweiBalance = ethBalance * 1e9;
+        setBalanceInGwei(gweiBalance);
+        //microether
+        let microetherBalance = ethBalance * 1e6;
+        setBalanceInMicroether(microetherBalance);
+        //milliether
+        let millietherBalance = ethBalance * 1e3;
+        setBalanceInMilliether(millietherBalance);
+      } catch (error) {
+        console.error('Error converting balance:', error);
+      }
+    }
+  }
+
+
   const initUser = () => {
     // Check to see if user has Metamask
     if (!ethWallet) {
@@ -96,6 +132,16 @@ export default function HomePage() {
         <p>Your Balance: {balance}</p>
         <button onClick={deposit}>Deposit 1 ETH</button>
         <button onClick={withdraw}>Withdraw 1 ETH</button>
+        <hr></hr>
+        <h3>Convert Balance</h3>
+        <button onClick={convertBalance}>Convert</button>
+        <br></br><br></br>
+        <label>Wei:</label><p> {balanceInWei}</p>
+        <label>Kwei:</label><p> {balanceInKwei}</p>
+        <label>Mwei:</label><p> {balanceInMwei}</p>
+        <label>Gwei:</label><p> {balanceInGwei}</p>
+        <label>Microether:</label><p> {balanceInMicroether}</p>
+        <label>Milliether:</label><p> {balanceInMilliether}</p>
       </div>
     )
   }
@@ -104,7 +150,7 @@ export default function HomePage() {
 
   return (
     <main className="container">
-      <header><h1>Welcome to the Metacrafters ATM!</h1></header>
+      <header><h1>Welcome to MetaCash!</h1></header>
       {initUser()}
       <style jsx>{`
         .container {
