@@ -1,6 +1,18 @@
-# Starter Next/Hardhat Project
+# Smart Contract Management
 
-After cloning the github, you will want to do the following to get the code running on your computer.
+This project integrates the backend to the frontend for Solidity projects. The library used for user interfaces is React.js, while the library used for interacting with the Ethereum blockchain is Ethers.js. The Smart Contract ABI is used by ethers.js to interact with the deployed smart contract.
+
+## Description
+
+The project requires a Metamask account to be connected. It will then retrieve the current balance of the account, then the user can deposit and withdraw 1 Ether from their account. Additionally, this project has a convert balance function that references to the current balance, and then converts it to Wei, Kwei, Mwei, Gwei, Microether, and Milliether.  
+
+## Getting Started
+
+### Executing program
+
+To run this program, you can use Gitpod, an online IDE. To get started, go to the Remix website at https://gitpod.io/workspaces.
+
+Once you are on the Gitpod website, clone the github to your workspace.
 
 1. Inside the project directory, in the terminal type: npm i
 2. Open two additional terminals in your VS code
@@ -10,3 +22,11 @@ After cloning the github, you will want to do the following to get the code runn
 
 After this, the project will be running on your localhost. 
 Typically at http://localhost:3000/
+
+## Authors
+
+Kristine Garcia
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details
