@@ -13,6 +13,7 @@ export default function HomePage() {
   const [balanceInMwei, setBalanceInMwei] = useState(0);
   const [balanceInMicroether, setBalanceInMicroether] = useState(0);
   const [balanceInMilliether, setBalanceInMilliether] = useState(0);
+  const [transferAddress, setTransferAddress] = useState("");
 
 
   const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
@@ -110,6 +111,19 @@ export default function HomePage() {
     }
   }
 
+  const transferBalance = async () => {
+    if (atm) {
+      try {
+        let tx = await atm.transferBalance(transferAddress, 1);
+        await tx.wait()
+        setTransferAddress("");
+        getBalance();
+      } catch (error) {
+        console.error("Error transferring balance:", error);
+      }
+    }
+  }
+
 
   const initUser = () => {
     // Check to see if user has Metamask
@@ -132,6 +146,16 @@ export default function HomePage() {
         <p>Your Balance: {balance}</p>
         <button onClick={deposit}>Deposit 1 ETH</button>
         <button onClick={withdraw}>Withdraw 1 ETH</button>
+        <hr></hr>
+        <div>
+          <input
+            type="text"
+            placeholder="Recipient Address"
+            value={transferAddress}
+            onChange={(e) => setTransferAddress(e.target.value)}
+          />
+          <button onClick={transferBalance}>Transfer 1 ETH</button>
+        </div>
         <hr></hr>
         <h3>Convert Balance</h3>
         <button onClick={convertBalance}>Convert</button>
